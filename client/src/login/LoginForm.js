@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import './LoginForm.css';
 import { FaUserCircle, FaLock } from "react-icons/fa";
 
-
 const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username && password) {
-      // Aquí normalmente harías una verificación con el backend
-      // Por ahora, simplemente llamamos a onLogin si ambos campos están llenos
-      onLogin();
+      if ((username === "admin" && password === "12345") || 
+          (username === "bruno" && password === "12345")) {
+        onLogin(username, password);
+      } else {
+        setError("Usuario o contraseña incorrectos");
+      }
     } else {
-      alert("Por favor, llena todos los campos");
+      setError("Por favor, llena todos los campos");
     }
   };
 
@@ -23,25 +26,26 @@ const LoginForm = ({ onLogin }) => {
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
         <div className="input-box">
-          <input 
-            type="text" 
-            placeholder="Username" 
-            required 
+          <input
+            type="text"
+            placeholder="Username"
+            required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <FaUserCircle className="icon" />
         </div>
         <div className="input-box">
-          <input 
-            type="password" 
-            placeholder="Password" 
-            required 
+          <input
+            type="password"
+            placeholder="Password"
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <FaLock className="icon"/>
         </div>
+        {error && <p className="error-message">{error}</p>}
         <div className="remember-forgot">
           <label><input type="checkbox"/> Acuérdate de mí </label>
           <a href="#"> ¿Olvidaste contraseña? </a>
