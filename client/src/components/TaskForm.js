@@ -69,7 +69,7 @@ export default function TaskForm() {
                     padding: '1rem'
                 }}>
                     <Typography variant='5' textAlign='center' color='white'>
-                        {editing ? 'Edit Task' : "Create Task"}
+                        {editing ? 'Edit Task' : " crear informe "}
                     </Typography>
 
                     <CardContent>
@@ -104,7 +104,7 @@ export default function TaskForm() {
                             />
                             <TextField
                                 variant='filled'
-                                label='Price'
+                                label='Precio '
                                 type="number"
                                 sx={{
                                     display: 'block',
