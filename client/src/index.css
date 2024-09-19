@@ -15,9 +15,71 @@ body {
   background: #2d3436;
   color: white;
   line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* Encabezado de la tienda */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+    linear-gradient(to bottom right, rgba(30, 144, 255, 0.1), rgba(138, 43, 226, 0.1));
+  z-index: -1;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating-notes {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.floating-notes::before,
+.floating-notes::after {
+  content: '♪';
+  position: absolute;
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.1);
+  animation: float 6s infinite;
+}
+
+.floating-notes::before {
+  top: 10%;
+  left: 10%;
+}
+
+.floating-notes::after {
+  bottom: 20%;
+  right: 15%;
+  animation-delay: 3s;
+}
+
+/* Add this new class for the login page */
+.login-page {
+  background-image: url('./images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Rest of your existing styles */
 header {
   background-color: #0984e3;
   color: white;
@@ -28,67 +90,7 @@ header {
   border-bottom: 4px solid #74b9ff;
 }
 
-/* Estilos para los productos */
-.product-card {
-  background: #333;
-  border: 1px solid #444;
-  border-radius: 10px;
-  margin: 20px;
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-}
-
-.product-card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.product-title {
-  font-size: 18px;
-  margin: 10px 0;
-}
-
-.product-price {
-  font-size: 20px;
-  color: #00cec9;
-  margin-bottom: 15px;
-}
-
-/* Botón de compra */
-.buy-btn {
-  display: inline-block;
-  background-color: #0984e3;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.buy-btn:hover {
-  background-color: #74b9ff;
-}
-
-/* Pie de página */
-footer {
-  background-color: #222;
-  color: #ccc;
-  padding: 20px;
-  text-align: center;
-  font-size: 14px;
-  border-top: 1px solid #444;
-}
-
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-

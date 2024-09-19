@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate, useNavigate, Link } from 'react-router-dom';
+import { Container, Button } from '@mui/material';
+
+// Componentes
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import LoginForm from './login/LoginForm';
-import { Container, Grid2, Button } from '@mui/material';
 import Menu from './components/Navbar';
 import TiendaForm from './interface/TiendaForm';
-import PercuForm from './menu/percusion/PercuForm' // Asegúrate de que esta ruta de importación sea correcta
-//import VientosForm from './menu/vientos/VientosForm'
+import PercuForm from './menu/percusion/PercuForm';
+import CarritoPage from './carrito/CarritoPage'; // Nuevo import
 
 function AdminView() {
   return (
@@ -19,8 +21,13 @@ function AdminView() {
         </Button>
       </Link>
       <Link to="/new-task">
-        <Button variant="contained" color="secondary">
-          ingresar Producto
+        <Button variant="contained" color="secondary" style={{ marginRight: '10px' }}>
+          Ingresar Producto
+        </Button>
+      </Link>
+      <Link to="/carrito">
+        <Button variant="contained" color="success">
+          Ir al Carrito
         </Button>
       </Link>
     </div>
@@ -64,8 +71,8 @@ function AuthenticatedApp({ userType }) {
           <Route path="/tasks" element={<TaskListWithBackButton />} />
           <Route path="/new-task" element={<TaskFormWithBackButton />} />
           <Route path="/tienda" element={userType === 'bruno' ? <TiendaForm /> : <Navigate to="/" />} />
-          <Route path="/menu/PercuForm" element={<PercuForm />} />  {/* Nueva ruta para PercuForm */}
-        
+          <Route path="/menu/PercuForm" element={<PercuForm />} />
+          <Route path="/carrito" element={<CarritoPage />} /> {/* Nueva ruta para el Carrito */}
           <Route path="/" element={<Navigate to={userType === 'admin' ? '/admin' : '/tienda'} />} />
         </Routes>
       </Container>

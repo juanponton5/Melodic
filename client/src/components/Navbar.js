@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Box, AppBar, Container, Toolbar, Typography, Button, Menu, MenuItem } from '@mui/material';
+import { Box, AppBar, Container, Toolbar, Typography, Button, Menu, MenuItem, IconButton } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
 
 const menuItems = [
   {
@@ -51,6 +52,11 @@ export default function Navbar() {
 
   const handleHomeClick = () => {
     navigate('/tienda');
+  };
+
+  const handleCartClick = () => {
+    // Add navigation to cart page or open cart modal
+    navigate('/carrito');
   };
 
   return (
@@ -106,18 +112,32 @@ export default function Navbar() {
                 </React.Fragment>
               ))}
             </Box>
-            <Button
-              color="inherit"
-              onClick={handleLogout}
-              sx={{
-                fontWeight: 'bold',
-                '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                }
-              }}
-            >
-              Cerrar sesión
-            </Button>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <IconButton
+                color="inherit"
+                onClick={handleCartClick}
+                sx={{
+                  mr: 2,
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                  }
+                }}
+              >
+                <FaShoppingCart />
+              </IconButton>
+              <Button
+                color="inherit"
+                onClick={handleLogout}
+                sx={{
+                  fontWeight: 'bold',
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                  }
+                }}
+              >
+                Cerrar sesión
+              </Button>
+            </Box>
           </Toolbar>
         </Container>
       </AppBar>
