@@ -29,10 +29,10 @@ const getTask = async (req, res,next) => {
 };
 
 const createTask = async (req, res,next) => {
-    const { title, descripcion,precio,cantidad } = req.body;
+    const { title, descripcion,precio,cantidad,categoria } = req.body;
     try {
-        const result = await pool.query("INSERT INTO tasks (title,descripcion,precio,cantidad ) VALUES ($1,$2,$3,$4) RETURNING *", 
-        [ title, descripcion,precio,cantidad ]
+        const result = await pool.query("INSERT INTO tasks (title,descripcion,precio,cantidad,categoria ) VALUES ($1,$2,$3,$4,$5) RETURNING *", 
+        [ title, descripcion,precio,cantidad,categoria ]
         );
 
         res.json(result.rows[0])

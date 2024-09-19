@@ -55,6 +55,8 @@ export default function TaskList() {
                 <Typography>{task.descripcion}</Typography>
                 <Typography>Precio: {task.precio}</Typography>
                 <Typography>Cantidad: {task.cantidad}</Typography>
+                <Typography>{task.categoria}</Typography>
+                
               </CardContent>
               <CardContent>
                 <Button

@@ -18,6 +18,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
   flexDirection: 'column',
   transition: 'transform 0.15s ease-in-out',
   '&:hover': { transform: 'scale3d(1.05, 1.05, 1)' },
+  position: 'relative',
 }));
 
 const StyledCardMedia = styled(CardMedia)({
@@ -28,6 +29,14 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   position: 'absolute',
   top: theme.spacing(2),
   right: theme.spacing(2),
+  zIndex: 1,
+}));
+
+const CategoryChip = styled(Chip)(({ theme }) => ({
+  position: 'absolute',
+  top: theme.spacing(2),
+  left: theme.spacing(2),
+  zIndex: 1,
 }));
 
 export default function ProductList() {
@@ -47,7 +56,7 @@ export default function ProductList() {
     <Container maxWidth="lg">
       <Box my={4}>
         <Typography variant="h3" component="h1" gutterBottom align="center">
-          Instrumentos 
+          Instrumentos
         </Typography>
         <Grid container spacing={4}>
           {products.map((product) => (
@@ -58,12 +67,15 @@ export default function ProductList() {
                   title={product.title}
                 />
                 <StyledChip label={`$${product.precio}`} color="primary" />
+                <CategoryChip label={product.categoria} color="secondary" />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
                     {product.title}
                   </Typography>
                   <Typography variant="body2" color="textSecondary" component="p">
                     {product.descripcion}
+                  </Typography><Typography variant="body2" color="textSecondary" component="p">
+                    {product.categoria}
                   </Typography>
                 </CardContent>
                 <Box px={2} pb={2} mt="auto">

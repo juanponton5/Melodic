@@ -14,7 +14,77 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #2d3436;
   color: white;
+  line-height: 1.6;
 }
+
+/* Encabezado de la tienda */
+header {
+  background-color: #0984e3;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 4px solid #74b9ff;
+}
+
+/* Estilos para los productos */
+.product-card {
+  background: #333;
+  border: 1px solid #444;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.product-title {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.product-price {
+  font-size: 20px;
+  color: #00cec9;
+  margin-bottom: 15px;
+}
+
+/* Botón de compra */
+.buy-btn {
+  display: inline-block;
+  background-color: #0984e3;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.buy-btn:hover {
+  background-color: #74b9ff;
+}
+
+/* Pie de página */
+footer {
+  background-color: #222;
+  color: #ccc;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #444;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

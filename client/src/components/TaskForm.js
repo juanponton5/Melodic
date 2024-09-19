@@ -91,7 +91,7 @@ export default function TaskForm() {
                                 variant='filled'
                                 label='descripcion'
                                 multiline
-                                rows={4}
+                                rows={10}
                                 sx={{
                                     display: 'block',
                                     margin: '.5rem 0'
@@ -130,12 +130,28 @@ export default function TaskForm() {
                                 inputProps={{ style: { color: "white" } }}
                                 InputLabelProps={{ style: { color: "white" } }}
                             />
+                            <TextField
+                                variant='filled'
+                                label='categoria'
+                                multiline
+                                rows={4}
+                                sx={{
+                                    display: 'block',
+                                    margin: '.5rem 0'
+                                }}
+                                name="categoria"
+                                value={task.categoria}
+                                onChange={handleChange}
+                                inputProps={{ style: { color: "white" } }}
+                                InputLabelProps={{ style: { color: "white" } }}
+                            />
+                            
 
                             <Button 
                                 variant='contained' 
                                 color='primary' 
                                 type='submit' 
-                                disabled={!task.title || !task.descripcion || !task.precio || !task.cantidad}
+                                disabled={!task.title || !task.descripcion || !task.precio || !task.cantidad || !task.categoria}
                             >
                                 {loading ? (
                                     <CircularProgress color='inherit' size={24} />

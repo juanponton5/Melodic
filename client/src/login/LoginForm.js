@@ -10,11 +10,13 @@ const LoginForm = ({ onLogin }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username && password) {
-      if ((username === "admin" && password === "12345") || 
+      if ((username === "admin" && password === "12345") ||
           (username === "bruno" && password === "12345")) {
         onLogin(username, password);
       } else {
         setError("Usuario o contraseña incorrectos");
+        setUsername(""); // Clear username field
+        setPassword(""); // Clear password field
       }
     } else {
       setError("Por favor, llena todos los campos");

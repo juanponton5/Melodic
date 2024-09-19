@@ -3,9 +3,11 @@ import { BrowserRouter, Route, Routes, Navigate, useNavigate, Link } from 'react
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import LoginForm from './login/LoginForm';
-import { Container, Grid, Button } from '@mui/material';
+import { Container, Grid2, Button } from '@mui/material';
 import Menu from './components/Navbar';
 import TiendaForm from './interface/TiendaForm';
+import PercuForm from './menu/percusion/PercuForm' // Asegúrate de que esta ruta de importación sea correcta
+//import VientosForm from './menu/vientos/VientosForm'
 
 function AdminView() {
   return (
@@ -29,7 +31,7 @@ function BackButton() {
   const navigate = useNavigate();
   return (
     <Button variant="outlined" color="primary" onClick={() => navigate('/admin')} style={{ marginTop: '20px' }}>
-      Volver 
+      Volver
     </Button>
   );
 }
@@ -62,6 +64,8 @@ function AuthenticatedApp({ userType }) {
           <Route path="/tasks" element={<TaskListWithBackButton />} />
           <Route path="/new-task" element={<TaskFormWithBackButton />} />
           <Route path="/tienda" element={userType === 'bruno' ? <TiendaForm /> : <Navigate to="/" />} />
+          <Route path="/menu/PercuForm" element={<PercuForm />} />  {/* Nueva ruta para PercuForm */}
+        
           <Route path="/" element={<Navigate to={userType === 'admin' ? '/admin' : '/tienda'} />} />
         </Routes>
       </Container>
