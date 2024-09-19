@@ -11,12 +11,7 @@ export default function Navbar () {
                     <Typography variant='h6' sx={{ flexGrow: 1}}>
                         <Link to='/' style={{textDecoration: 'none',color:'#eee'}}>  Melodic Shop  </Link>
                     </Typography>
-                    <Button variant='contained' 
-                    color='primary' 
-                    onClick={ () => navigate("/tasks/new")}
-                    >
-                        Nuevo producto 
-                    </Button>
+                    
                 </Toolbar>
             </Container>
         </AppBar>

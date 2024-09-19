@@ -10,6 +10,7 @@ import {
   Chip
 } from "@mui/material";
 import { styled } from "@mui/system";
+import './ProductList.css';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   height: '100%',
