@@ -6,15 +6,15 @@ import { FaShoppingCart } from 'react-icons/fa';
 const menuItems = [
   {
     title: 'Percusión',
-    items: ['Baterías', 'Vientos', 'Platillos']
+    items: []
   },
   {
     title: 'Cuerdas',
-    items: ['Guitarras', 'Bajos', 'Violines']
+    items: []
   },
   {
     title: 'Vientos',
-    items: ['Saxofones', 'Trompetas', 'Flautas']
+    items: []
   }
 ];
 
@@ -34,14 +34,13 @@ export default function Navbar() {
     setAnchorEls(newAnchorEls);
   };
 
-  const handleMenuItemClick = (item, index) => {
-    handleMenuClose(index);
-    if (item === 'Baterías') {
+  const handleMenuItemClick = (category) => {
+    if (category === 'Percusión') {
       navigate('/menu/PercuForm');
-    } else if (item === 'Flautas') {
+    } else if (category === 'Vientos') {
       navigate('/menu/vientos/VientosForm');
     }
-    // Add more conditions here for other menu items if needed
+    // Add more conditions here for other categories if needed
   };
 
   const handleLogout = () => {
@@ -84,32 +83,20 @@ export default function Navbar() {
                 Home
               </Button>
               {menuItems.map((menu, index) => (
-                <React.Fragment key={menu.title}>
-                  <Button
-                    color="inherit"
-                    onClick={(e) => handleMenuOpen(e, index)}
-                    sx={{
-                      mx: 2,
-                      fontWeight: 'bold',
-                      '&:hover': {
-                        backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                      }
-                    }}
-                  >
-                    {menu.title}
-                  </Button>
-                  <Menu
-                    anchorEl={anchorEls[index]}
-                    open={Boolean(anchorEls[index])}
-                    onClose={() => handleMenuClose(index)}
-                  >
-                    {menu.items.map((item) => (
-                      <MenuItem key={item} onClick={() => handleMenuItemClick(item, index)}>
-                        {item}
-                      </MenuItem>
-                    ))}
-                  </Menu>
-                </React.Fragment>
+                <Button
+                  key={menu.title}
+                  color="inherit"
+                  onClick={() => handleMenuItemClick(menu.title)}
+                  sx={{
+                    mx: 2,
+                    fontWeight: 'bold',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                    }
+                  }}
+                >
+                  {menu.title}
+                </Button>
               ))}
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>

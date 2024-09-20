@@ -7,9 +7,19 @@ import {
   Grid,
   Container,
   Box,
-  Chip
+  Chip,
+  IconButton
 } from "@mui/material";
 import { styled } from "@mui/system";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CarroForm from "../../carrito/carroForm";
+
+const formatNumber = (number) => {
+  return number.toLocaleString('es-ES', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+};
 
 const StyledCard = styled(Card)(({ theme }) => ({
   height: '100%',
@@ -31,26 +41,28 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   zIndex: 1,
 }));
 
+const AddToCartButton = styled(IconButton)(({ theme }) => ({
+  position: 'absolute',
+  bottom: theme.spacing(2),
+  right: theme.spacing(2),
+}));
+
 export default function ProductList() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const loadProducts = async () => {
     try {
       const response = await fetch('http://localhost:4000/tasks');
       const data = await response.json();
-      
       console.log('All products:', data); // Debugging log
-      
       // Filter products to only include those with category "Bateria"
-      const bateriaProducts = data.filter(task => 
+      const bateriaProducts = data.filter(task =>
         task.categoria && task.categoria.toLowerCase().includes('bateria')
       );
-      
       console.log('Filtered Bateria products:', bateriaProducts); // Debugging log
-      
       setProducts(bateriaProducts);
-      
       if (bateriaProducts.length === 0) {
         setError('No se encontraron productos en la categoría "Bateria".');
       } else {
@@ -65,6 +77,14 @@ export default function ProductList() {
   useEffect(() => {
     loadProducts();
   }, []);
+
+  const handleAddToCart = (product) => {
+    setSelectedProduct(product);
+  };
+
+  if (selectedProduct) {
+    return <CarroForm product={selectedProduct} onClose={() => setSelectedProduct(null)} />;
+  }
 
   return (
     <Container maxWidth="lg">
@@ -83,7 +103,7 @@ export default function ProductList() {
                     image={`https://source.unsplash.com/random/800x600?drums`}
                     title={product.title}
                   />
-                  <StyledChip label={`$${product.precio}`} color="primary" />
+                  <StyledChip label={`$${formatNumber(product.precio)}`} color="primary" />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                       {product.title}
@@ -97,6 +117,13 @@ export default function ProductList() {
                       Disponibles: {product.cantidad}
                     </Typography>
                   </Box>
+                  <AddToCartButton
+                    color="primary"
+                    aria-label="add to cart"
+                    onClick={() => handleAddToCart(product)}
+                  >
+                    <ShoppingCartIcon />
+                  </AddToCartButton>
                 </StyledCard>
               </Grid>
             ))}
