@@ -7,11 +7,11 @@ import {
   Grid,
   Container,
   Box,
-  Chip,
   IconButton
 } from "@mui/material";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material/styles";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import '@fontsource/comic-neue/700.css';
 import CarroForm from "../../carrito/carroForm";
 
 const formatNumber = (number) => {
@@ -20,6 +20,12 @@ const formatNumber = (number) => {
     maximumFractionDigits: 2
   });
 };
+
+const ComicTitle = styled(Typography)`
+  font-family: 'Comic Neue', cursive;
+  text-align: center;
+  margin-bottom: 2rem;
+`;
 
 const StyledCard = styled(Card)(({ theme }) => ({
   height: '100%',
@@ -34,11 +40,20 @@ const StyledCardMedia = styled(CardMedia)({
   paddingTop: '56.25%', // 16:9 aspect ratio
 });
 
-const StyledChip = styled(Chip)(({ theme }) => ({
+const PriceBox = styled(Box)(({ theme }) => ({
   position: 'absolute',
   top: theme.spacing(2),
   right: theme.spacing(2),
+  backgroundColor: '#2196f3',
+  color: 'white',
+  padding: theme.spacing(0.75, 1.5),
+  borderRadius: '20px',
+  fontWeight: 'bold',
+  boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
   zIndex: 1,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
 const AddToCartButton = styled(IconButton)(({ theme }) => ({
@@ -56,12 +71,11 @@ export default function ProductList() {
     try {
       const response = await fetch('http://localhost:4000/tasks');
       const data = await response.json();
-      console.log('All products:', data); // Debugging log
-      // Filter products to only include those with category "Bateria"
+      console.log('All products:', data);
       const bateriaProducts = data.filter(task =>
         task.categoria && task.categoria.toLowerCase().includes('bateria')
       );
-      console.log('Filtered Bateria products:', bateriaProducts); // Debugging log
+      console.log('Filtered Bateria products:', bateriaProducts);
       setProducts(bateriaProducts);
       if (bateriaProducts.length === 0) {
         setError('No se encontraron productos en la categoría "Bateria".');
@@ -89,9 +103,9 @@ export default function ProductList() {
   return (
     <Container maxWidth="lg">
       <Box my={4}>
-        <Typography variant="h3" component="h1" gutterBottom align="center">
-          percusion
-        </Typography>
+        <ComicTitle variant="h3" component="h1">
+          Instrumentos de Percusión
+        </ComicTitle>
         {error ? (
           <Typography color="error" align="center">{error}</Typography>
         ) : (
@@ -103,7 +117,9 @@ export default function ProductList() {
                     image={`https://source.unsplash.com/random/800x600?drums`}
                     title={product.title}
                   />
-                  <StyledChip label={`$${formatNumber(product.precio)}`} color="primary" />
+                  <PriceBox>
+                    ${formatNumber(product.precio)}
+                  </PriceBox>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                       {product.title}

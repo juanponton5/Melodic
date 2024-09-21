@@ -8,7 +8,8 @@ import LoginForm from './login/LoginForm';
 import Menu from './components/Navbar';
 import TiendaForm from './interface/TiendaForm';
 import PercuForm from './menu/percusion/PercuForm';
-import VientosForm from './menu/vientos/VientosForm'; // Nuevo import
+import VientosForm from './menu/vientos/VientosForm';
+import CuerdasForm from './menu/cuerdas/CuerdasForm'; // Nuevo import
 import CarritoPage from './carrito/CarritoPage';
 
 function AdminView() {
@@ -33,6 +34,11 @@ function AdminView() {
       <Link to="/menu/vientos">
         <Button variant="contained" color="info" style={{ marginRight: '10px' }}>
           Instrumentos de Viento
+        </Button>
+      </Link>
+      <Link to="/menu/cuerdas">
+        <Button variant="contained" color="warning" style={{ marginRight: '10px' }}>
+          Instrumentos de Cuerda
         </Button>
       </Link>
     </div>
@@ -77,7 +83,8 @@ function AuthenticatedApp({ userType }) {
           <Route path="/new-task" element={<TaskFormWithBackButton />} />
           <Route path="/tienda" element={userType === 'bruno' ? <TiendaForm /> : <Navigate to="/" />} />
           <Route path="/menu/PercuForm" element={<PercuForm />} />
-          <Route path="/menu/vientos" element={<VientosForm />} /> {/* Nueva ruta para VientosForm */}
+          <Route path="/menu/vientos" element={<VientosForm />} />
+          <Route path="/menu/cuerdas" element={<CuerdasForm />} /> {/* Nueva ruta para CuerdasForm */}
           <Route path="/carrito" element={<CarritoPage />} />
           <Route path="/" element={<Navigate to={userType === 'admin' ? '/admin' : '/tienda'} />} />
         </Routes>
@@ -90,7 +97,7 @@ function AppContent() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userType, setUserType] = useState(null);
   const navigate = useNavigate();
-  
+
   const handleLogin = (username, password) => {
     if (username === "admin" && password === "12345") {
       setIsAuthenticated(true);
@@ -104,7 +111,7 @@ function AppContent() {
       alert("Invalid username or password");
     }
   };
-  
+
   return (
     <>
       {!isAuthenticated ? (

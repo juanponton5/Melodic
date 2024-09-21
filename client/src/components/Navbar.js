@@ -38,7 +38,9 @@ export default function Navbar() {
     if (category === 'Percusión') {
       navigate('/menu/PercuForm');
     } else if (category === 'Vientos') {
-      navigate('/menu/vientos'); // Cambiado a la ruta correcta
+      navigate('/menu/vientos');
+    } else if (category === 'Cuerdas') {
+      navigate('/menu/cuerdas');
     }
     // Add more conditions here for other categories if needed
   };
