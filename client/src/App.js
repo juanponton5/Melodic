@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate, useNavigate, Link } from 'react-router-dom';
 import { Container, Button } from '@mui/material';
-
 // Componentes
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
@@ -9,7 +8,8 @@ import LoginForm from './login/LoginForm';
 import Menu from './components/Navbar';
 import TiendaForm from './interface/TiendaForm';
 import PercuForm from './menu/percusion/PercuForm';
-import CarritoPage from './carrito/CarritoPage'; // Nuevo import
+import VientosForm from './menu/vientos/VientosForm'; // Nuevo import
+import CarritoPage from './carrito/CarritoPage';
 
 function AdminView() {
   return (
@@ -26,8 +26,13 @@ function AdminView() {
         </Button>
       </Link>
       <Link to="/carrito">
-        <Button variant="contained" color="success">
+        <Button variant="contained" color="success" style={{ marginRight: '10px' }}>
           Ir al Carrito
+        </Button>
+      </Link>
+      <Link to="/menu/vientos">
+        <Button variant="contained" color="info" style={{ marginRight: '10px' }}>
+          Instrumentos de Viento
         </Button>
       </Link>
     </div>
@@ -72,7 +77,8 @@ function AuthenticatedApp({ userType }) {
           <Route path="/new-task" element={<TaskFormWithBackButton />} />
           <Route path="/tienda" element={userType === 'bruno' ? <TiendaForm /> : <Navigate to="/" />} />
           <Route path="/menu/PercuForm" element={<PercuForm />} />
-          <Route path="/carrito" element={<CarritoPage />} /> {/* Nueva ruta para el Carrito */}
+          <Route path="/menu/vientos" element={<VientosForm />} /> {/* Nueva ruta para VientosForm */}
+          <Route path="/carrito" element={<CarritoPage />} />
           <Route path="/" element={<Navigate to={userType === 'admin' ? '/admin' : '/tienda'} />} />
         </Routes>
       </Container>
@@ -84,7 +90,7 @@ function AppContent() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userType, setUserType] = useState(null);
   const navigate = useNavigate();
-
+  
   const handleLogin = (username, password) => {
     if (username === "admin" && password === "12345") {
       setIsAuthenticated(true);
@@ -98,7 +104,7 @@ function AppContent() {
       alert("Invalid username or password");
     }
   };
-
+  
   return (
     <>
       {!isAuthenticated ? (

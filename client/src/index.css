@@ -8,8 +8,8 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #2d3436;
@@ -17,58 +17,53 @@ body {
   line-height: 1.6;
   position: relative;
   overflow-x: hidden;
-}
-
-body::before {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+ }
+ body::before {
   content: '';
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
-    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
-    linear-gradient(to bottom right, rgba(30, 144, 255, 0.1), rgba(138, 43, 226, 0.1));
+  background:
+  radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+  radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+  linear-gradient(to bottom right, rgba(30, 144, 255, 0.1), rgba(138, 43, 226, 0.1));
   z-index: -1;
-}
-
-@keyframes float {
+ }
+ @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
   100% { transform: translateY(0px); }
-}
-
-.floating-notes {
+ }
+ .floating-notes {
   position: fixed;
   width: 100%;
   height: 100%;
   pointer-events: none;
   z-index: -1;
-}
-
-.floating-notes::before,
-.floating-notes::after {
+ }
+ .floating-notes::before,
+ .floating-notes::after {
   content: '♪';
   position: absolute;
   font-size: 30px;
   color: rgba(255, 255, 255, 0.1);
   animation: float 6s infinite;
-}
-
-.floating-notes::before {
+ }
+ .floating-notes::before {
   top: 10%;
   left: 10%;
-}
-
-.floating-notes::after {
+ }
+ .floating-notes::after {
   bottom: 20%;
   right: 15%;
   animation-delay: 3s;
-}
-
-/* Add this new class for the login page */
-.login-page {
+ }
+ .login-page {
   background-image: url('./images/background.jpg');
   background-size: cover;
   background-position: center;
@@ -77,10 +72,8 @@ body::before {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* Rest of your existing styles */
-header {
+ }
+ header {
   background-color: #0984e3;
   color: white;
   padding: 20px 0;
@@ -88,9 +81,28 @@ header {
   font-size: 24px;
   font-weight: bold;
   border-bottom: 4px solid #74b9ff;
-}
-
-code {
+ }
+ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+  monospace;
+ }
+ 
+ /* Contenido principal */
+ main {
+  flex: 1;
+ }
+ 
+ /* Nuevo estilo de footer */
+ footer {
+  background-color: #808080; /* Color gris */
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  margin-top: auto; /* Empuja el footer al fondo */
+ }
+ 
+ .footer-text {
+  font-size: 16px;
+  font-weight: bold;
+ }

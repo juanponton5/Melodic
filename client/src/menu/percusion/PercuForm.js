@@ -90,7 +90,7 @@ export default function ProductList() {
     <Container maxWidth="lg">
       <Box my={4}>
         <Typography variant="h3" component="h1" gutterBottom align="center">
-          Baterías
+          percusion
         </Typography>
         {error ? (
           <Typography color="error" align="center">{error}</Typography>

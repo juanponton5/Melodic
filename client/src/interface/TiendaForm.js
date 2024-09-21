@@ -36,19 +36,21 @@ export default function ProductList() {
     zIndex: 1,
   }));
 
+  // Updated PriceBox with the new style
   const PriceBox = styled(Box)(({ theme }) => ({
     position: 'absolute',
     top: theme.spacing(2),
     right: theme.spacing(2),
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-    padding: theme.spacing(0.5, 1),
-    borderRadius: theme.shape.borderRadius,
+    backgroundColor: '#2196f3', // Material-UI blue color
+    color: 'white',
+    padding: theme.spacing(0.75, 1.5),
+    borderRadius: '20px', // Rounded corners
+    fontWeight: 'bold',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.2)', // Subtle shadow
     zIndex: 1,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '32px',
   }));
 
   const AddToCartButton = styled(IconButton)(({ theme }) => ({
@@ -111,9 +113,7 @@ export default function ProductList() {
               />
               <CategoryChip label={product.categoria || 'Sin categoría'} color="primary" size="small" />
               <PriceBox>
-                <Typography variant="body2" fontWeight="bold">
-                  ${formatNumber(product.precio || 0)}
-                </Typography>
+                ${formatNumber(product.precio || 0)}
               </PriceBox>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
