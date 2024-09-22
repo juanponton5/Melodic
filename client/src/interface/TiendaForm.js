@@ -3,9 +3,9 @@ import { Card, CardContent, CardMedia, Typography, Grid, Container, Box, Chip, I
 import { styled } from "@mui/material/styles";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import '@fontsource/comic-neue/700.css';
-import CarroForm from "../carrito/carroForm"; // Asegúrate de que la ruta sea correcta
+import CarroForm from "../carrito/carroForm"
 
-// Función para formatear números con separador de miles
+
 const formatNumber = (number) => {
   return number.toLocaleString('es-ES', {
     minimumFractionDigits: 2,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate, useNavigate, Link } from 'react-router-dom';
 import { Container, Button } from '@mui/material';
-// Componentes
+
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import LoginForm from './login/LoginForm';
@@ -9,7 +9,7 @@ import Menu from './components/Navbar';
 import TiendaForm from './interface/TiendaForm';
 import PercuForm from './menu/percusion/PercuForm';
 import VientosForm from './menu/vientos/VientosForm';
-import CuerdasForm from './menu/cuerdas/CuerdasForm'; // Nuevo import
+import CuerdasForm from './menu/cuerdas/CuerdasForm'; 
 import CarritoPage from './carrito/CarritoPage';
 
 function AdminView() {
@@ -84,7 +84,7 @@ function AuthenticatedApp({ userType }) {
           <Route path="/tienda" element={userType === 'bruno' ? <TiendaForm /> : <Navigate to="/" />} />
           <Route path="/menu/PercuForm" element={<PercuForm />} />
           <Route path="/menu/vientos" element={<VientosForm />} />
-          <Route path="/menu/cuerdas" element={<CuerdasForm />} /> {/* Nueva ruta para CuerdasForm */}
+          <Route path="/menu/cuerdas" element={<CuerdasForm />} /> {}
           <Route path="/carrito" element={<CarritoPage />} />
           <Route path="/" element={<Navigate to={userType === 'admin' ? '/admin' : '/tienda'} />} />
         </Routes>

@@ -5,7 +5,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import '@fontsource/comic-neue/700.css';
 import CarroForm from "../../carrito/carroForm";
 
-// Función para formatear números con separador de miles
+
 const formatNumber = (number) => {
   return number.toLocaleString('es-ES', {
     minimumFractionDigits: 2,
